@@ -11,6 +11,15 @@ app.get("/bye", function(req,res){
 
 });
 
+
+
 app.listen(3000,function(){
 	console.log("server started");
+});
+
+
+
+app.get("*", function(req,res){
+	res.send("does not exists");
+
 });

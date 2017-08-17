@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+ 
+<!-- If IE use the latest rendering engine -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+<!-- Set the page to the width of the device and set the zoon level -->
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+	<title>Dashboard</title>
+
+    <link rel="shortcut icon" type="image/png" href="../mylogo.png">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+<link href="css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+
+
+	
+
+<style type="text/css">
+
+
+#main{
+margin-top: 8%;
+}
+
+#squareBox{
+	border: 1.5px solid black;
+	padding-left: 2%;
+	padding-bottom: 1%;
+  s
+}
+
+.row{
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+
+</style>
+
+
+
+
+<script
+			  src="https://code.jquery.com/jquery-3.1.1.js"
+			  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+			  crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    	<div class="container-fluid">
+			<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+				<a class="navbar-brand" href=""><span id= "brand">VentureX:prototype</span></a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="">Home</a></li>
+					<li><a href="https://www.innovativekit.com" target="_blank">About</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Hello,16@test.com </a>
+                       
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                            <div class="col-lg-12">
+                                <div class="text-center"><h3><b>Log In</b></h3></div>
+                                <form id="ajax-login-form" action="" method="post" role="form" autocomplete="off">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-7">
+                                                <input type="checkbox" tabindex="3" name="remember" id="remember">
+                                                <label for="remember"> Remember Me</label>
+                                            </div>
+                                            <div class="col-xs-5 pull-right">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+                                </form>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</nav>
+    
+<div class="container" id="main">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 "> 
+        <img class= "img-responsive img-rounded" src="https://s-media-cache-ak0.pinimg.com/736x/47/e4/b8/47e4b823589a2940af578dc27b6a0ce1.jpg">
+         </div>
+         <div class="col-lg-8 col-md-6" id="squareBox">
+	          
+	          	<div class="row">
+	          	    <div class="col-lg-2 col-md-6">
+		          		<b>Market </b>
+		          	</div>
+		          	<div class="col-lg-10 col-md-6">	
+                      <p>Fill in who are your customers?</p> 
+                       
+		          	</div>	
+		          	
+	          	</div>
+	          	<div class="row">
+	          	    <div class="col-lg-2 col-md-6">
+		          		<b> Pain</b>
+		          	</div>
+		          	<div class="col-lg-10 col-md-6">	
+                       <p>WHat is the pain statement that you are trying to solve for them?</p>
+                       
+		          	</div>	
+		          	
+	          	</div>
+	          	 <div class="row">
+	          	    <div class="col-lg-2 col-md-6">
+		          		<b>Benefit</b>
+		          	</div>
+		          	<div class="col-lg-7 col-md-6">	
+                       
+                       <p>WHat is the benefit that will match that pain statement?</p>
+		          	</div>	
+		          	<div class="col-lg-3">
+		          		<button class="btn btn-success">Edit Profile</button>
+		          	</div>
+		          	
+	          	</div>
+	          
+         </div>
+    </div>
+     <div class="row text-center">
+      	<div class="col-lg-12">	
+          <h3>How is <b>VentureX</b> <a href="#"><span class="glyphicon glyphicon-pencil"></span></a> doing today? <a href="#"> <h5>Check Dashboard</h5>  
+            </a></h3>
+      	</div>	
+	  </div>
+	   <div class="row text-center">
+      	<div class="col-lg-3">	
+          <div id="test-circle1" class="circle" data-dimension="250" data-text="Product" data-info="" data-width="30" data-fontsize="38" data-percent="27" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd" data-total="100" data-part="30"></div>
+      	</div>	
+      	<div class="col-lg-3">	
+          <div id="test-circle2" class="circle" data-dimension="250" data-text="Runaway" data-info="" data-width="30" data-fontsize="38" data-percent="25" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd" data-total="100" data-part="30"></div>
+      	</div>	
+      	<div class="col-lg-3">	
+          <div id="test-circle3" data-text="Conversion" data-percent="24"></div>
+      	</div>	
+      	<div class="col-lg-3">	
+          <div id="test-circle4" data-text="Engagement" data-percent="100"></div>
+      	</div>	
+	 </div>
+    <div class="row">
+      	<div class="col-lg-12 bg-success" style="border-radius:10px;">	
+           <p><b>Small conversation</b> Learn what you can do to <b>rise your conversion</b></p>
+      	</div>
+     </div>
+
+     <div class="row">
+      	<div class="col-lg-12 bg-danger" style="border-radius:10px;">	
+           <p><b>Low product score?</b> <b>Try this</b> to get more</p>
+      	</div>
+     </div>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="js/jquery.circliful.min.js"></script>
+
+
+<!-- <script
+			  src="https://code.jquery.com/jquery-3.1.1.js"
+			  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+			  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+<script>
+
+    $( document ).ready(function() {
+
+  $("#test-circle1").circliful({
+            
+            foregroundBorderWidth: 8,
+            backgroundBorderWidth: 8,
+            textSize: 28,
+            
+            foregroundColor:'#F9A238',
+            
+        });
+
+
+
+    $("#test-circle2").circliful({
+
+             foregroundBorderWidth: 8,
+            backgroundBorderWidth: 8,
+          
+             foregroundColor:'#FF0F14' 
+    }
+
+      );
+
+      $("#test-circle3").circliful({
+            
+            foregroundBorderWidth: 8,
+            backgroundBorderWidth: 8,
+            
+            textSize: 28,
+            
+            foregroundColor:'#F9A238',
+            
+        });
+
+
+        $("#test-circle4").circliful({
+           
+            foregroundBorderWidth: 8,
+            backgroundBorderWidth: 8,
+            textSize: 28,
+          
+            foregroundColor:'#6CFF0F',
+            
+        });
+   });
+
+</script>
+
+
+</body>
+</html>

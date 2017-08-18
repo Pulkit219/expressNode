@@ -1,6 +1,10 @@
 var express= require("express");
 var app  = express();
+var bodyParser =require('body-parser');
+	var friends =['pulkit', 'pierre', 'frankie'];
 
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('public'));
 app.set('view engine','ejs');
@@ -17,11 +21,16 @@ app.get('/testing/:test', function(req,resp){
 })
 
 app.get('/friends', function(req,resp){
+resp.render('friends',{friendsvar:friends});
+});
 
-	var friends =['pulkit', 'pierre', 'frankie'];
-	resp.render('friends',{friendsvar:friends});
+app.post('/addfriend',function(req,resp){
 
-})
+	var newfriend =req.body.newfriend;
+	friends.push(newfriend);
+	console.log(req.body.newfriend);
+ resp.redirect('/friends');
+});;
 
 app.get('/posts', function(req,resp){
 	var posts =[

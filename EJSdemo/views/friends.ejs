@@ -1,12 +1,19 @@
 
-<%include partials/header%>	
+<%include partials/header%>
 
-	<h1> Welcome to friends</h1>
+			<h1> Welcome to friends</h1>
 
 
-<%friendsvar.forEach(function(el){%>
-	
-	<li>I've a friend <%=el%></li>
-<%}); %>
+		<%friendsvar.forEach(function(el){%>
 
-<%include partials/footer%>	
+			<li>I've a friend <%=el%></li>
+		<%}); %>
+
+		<form  action="/addfriend" method="POST">
+			<input type="text" name="newfriend" placeholder="type name...">
+			<button>submit</button>
+		</form>
+
+
+
+<%include partials/footer%>

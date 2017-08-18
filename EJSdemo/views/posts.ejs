@@ -1,16 +1,17 @@
-<style>
-body{
-	color:purple;
-}
-</style>
 
-<h1> the posts page</h1>
-<br>
+<%include partials/header%>	
+
+	<h1> the posts page</h1>
+	<br>
 
 
-<% for(var i=0; i<postvar.length;i++)
-{%>
+	<% for(var i=0; i<postvar.length;i++)
+	{%>
 
-<li><%=postvar[i].title%>-<%=postvar[i].author%></li>
-	
-<%}%>
+	<li><%=postvar[i].title%>-<%=postvar[i].author%></li>
+		
+	<%}%>
+
+
+
+<%include partials/footer%>	

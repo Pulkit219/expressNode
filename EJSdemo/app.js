@@ -2,14 +2,24 @@ var express= require("express");
 var app  = express();
 
 
+app.use(express.static('public'));
+app.set('view engine','ejs');
+
 app.get('/', function(req,resp){
-	resp.render('home.ejs');
+	resp.render('home');
 
 })
 
 app.get('/testing/:test', function(req,resp){
 	var test =req.params.test;
-	resp.render('test.ejs',{thingvar:test});
+	resp.render('test',{thingvar:test});
+
+})
+
+app.get('/friends', function(req,resp){
+
+	var friends =['pulkit', 'pierre', 'frankie'];
+	resp.render('friends',{friendsvar:friends});
 
 })
 
@@ -20,7 +30,7 @@ app.get('/posts', function(req,resp){
 	{title:"post3", author:"pulkit"},
 
 	];
-	resp.render('posts.ejs',{postvar:posts});
+	resp.render('posts',{postvar:posts});
 
 })
 

@@ -4,6 +4,12 @@ var request = require('request');
 app.set('view engine', 'ejs');
 
 
+
+app.get('/',function(req,resp)
+{
+  resp.render('search');
+});
+
 app.get('/results', function(req,resp){
   request('http://www.omdbapi.com/?s=king&apikey=thewdb',function(error,response,body)
 {

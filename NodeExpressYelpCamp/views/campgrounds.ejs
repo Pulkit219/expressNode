@@ -1,1 +1,13 @@
-<h1>Cmapgfround page </h1>
+
+<% include partials/header %>
+
+<h1>Campground  page </h1>
+<%campgrounds.forEach(obj=>{%>
+
+  <div class="">
+    <h4><%=  obj.name %></h4>
+    <img src="<%= obj.image%>" alt="">
+  </div>
+
+<%}) %>
+<% include partials/footer %>

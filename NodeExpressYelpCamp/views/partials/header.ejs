@@ -5,6 +5,7 @@
 
 
 	<style type="text/css">
+
 	footer{
 
 		  background-color: black;
@@ -32,9 +33,15 @@ p>a
 img{
 	width: 500px;
 }
-	</style>
+@media (max-width: 576px) {
+	nav .container{
+		width: 100%;
+	}
 
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+}
+	</style>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <meta charset="UTF-8">
 
   <!-- If IE use the latest rendering engine -->
@@ -48,3 +55,18 @@ img{
   <link rel="shortcut icon" type="image/png" href="https://drive.google.com/uc?id=0B5-CQuN8g8r_UjY3dkxYVERNYXc">
 </head>
 <body>
+
+	<nav class="navbar navbar-light navbar-toggleable-md bg-faded">
+			<div class="container">
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+				<a href="/" class="navbar-brand">Yelp</a>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav mr-auto">
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+				      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				    </ul>
+					</div>
+				</div>
+	</nav>

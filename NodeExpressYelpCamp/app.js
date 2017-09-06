@@ -15,19 +15,25 @@ app.set('view engine' , 'ejs');
 
 app.use(bodyParser.urlencoded({extended:true}));
 
+
+//ROUTES
+
 app.get('/', function(req, resp)
 {
   resp.render("landing");
 });
+
 
 app.get('/campgrounds', function(req, resp){
 
    resp.render('campgrounds',{campgrounds:campgrounds });
 });
 
+
 app.get('/campgrounds/new', function(req, resp){
   resp.render('new');
 });
+
 
 
 app.post('/campgrounds', function(req,resp){
@@ -42,6 +48,8 @@ app.post('/campgrounds', function(req,resp){
 
   resp.redirect("/campgrounds");
 })
+
+
 
 app.listen(4200, function()
 {

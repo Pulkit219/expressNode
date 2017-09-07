@@ -60,7 +60,7 @@ app.get('/campgrounds', function(req, resp){
 
     else {
     resp.render('index',{campgrounds:allcampground });
-    console.log(allcampground);
+    
     }
   }
   );
@@ -72,15 +72,14 @@ app.get('/campgrounds/new', function(req, resp){
 });
 
 app.get('/campgrounds/:id', function(req, resp){
-  Campground.FindById(req.params.id, function(err,specificCampGround){
+  Campground.findById(req.params.id, function(err,specificCampGround){
     if(err)
      console.log(err);
 
      else {
-         resp.render('show');
-
-     }
-  })
+         resp.render('show', {campground:specificCampGround});
+        }
+  });
 
 });
 
@@ -89,10 +88,12 @@ app.get('/campgrounds/:id', function(req, resp){
 app.post('/campgrounds', function(req,resp){
    var name = req.body.name;
    var url= req.body.url;
+   var desc = req.body.desc;
    var obj =
    {
      name:name,
-     image:url
+     image:url,
+     description:desc
    };
    Campground.create(obj,
    function(err,campground){

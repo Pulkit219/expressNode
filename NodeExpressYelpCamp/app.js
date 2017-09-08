@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {useMongoClient: true});;
+mongoose.connect("mongodb://localhost:27017/yelp_camp", {useMongoClient: true});
 
 //SCHEMA
 var campgroundschema = new mongoose.Schema({
@@ -60,7 +60,7 @@ app.get('/campgrounds', function(req, resp){
 
     else {
     resp.render('index',{campgrounds:allcampground });
-    
+
     }
   }
   );

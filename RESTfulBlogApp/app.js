@@ -6,9 +6,9 @@ var mongoose = require("mongoose");
 // mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/restful_blog_app", {useMongoClient: true});
 
-app.set('view engine' , 'ejs');
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static('public'));
+// app.set('view engine' , 'ejs');
+// app.use(bodyParser.urlencoded({extended:true}));
+// app.use(express.static('public'));
 
 
 var blogschema = new mongoose.Schema({

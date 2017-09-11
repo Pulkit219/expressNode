@@ -6,9 +6,9 @@ var mongoose = require("mongoose");
 // mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/restful_blog_app", {useMongoClient: true});
 
-// app.set('view engine' , 'ejs');
-// app.use(bodyParser.urlencoded({extended:true}));
-// app.use(express.static('public'));
+app.set('view engine' , 'ejs');
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static('public'));
 
 
 var blogschema = new mongoose.Schema({
@@ -19,6 +19,32 @@ var blogschema = new mongoose.Schema({
 });
 
 var Blog = mongoose.model('Blog', blogschema)
+// Blog.create({
+//   title:'testing',
+//   image:'https://static.pexels.com/photos/573239/pexels-photo-573239.jpeg',
+//   body:'This is my first blog '
+// });
+
+app.get('/',(req,resp)=>{
+  resp.redirect('/blogs');
+})
+
+
+app.get('/blogs', function(req, resp){
+
+  //  resp.render('campgrounds',{campgrounds:campgrounds });
+  Blog.find({},
+  function(err,allblogs){
+    if(err)
+    console.log(err);
+
+    else {
+    resp.render('index',{blogs:allblogs });
+
+    }
+  }
+  );
+});
 
 app.listen(4200, function()
 {

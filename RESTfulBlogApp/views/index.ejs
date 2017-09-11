@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+
+<div class="container">
+      <%blogs.forEach(obj=>{%>
+        <div class="fluid">
+          <h2><%=obj.title %></h2>
+          <img src="<%=obj.image %>" alt="">
+          <span><%=obj.created %></span>
+          <p><%=obj.body %></p>
+        </div>
+      <%}) %>
+</div>
+
+
+<% include partials/footer %>

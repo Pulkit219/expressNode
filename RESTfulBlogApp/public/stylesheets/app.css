@@ -1,0 +1,34 @@
+
+	footer{
+
+		  background-color: black;
+		  color: gray;
+		  line-height: 20px;
+		  padding-top: 10px;
+		  padding-bottom: 6px;
+		  position: fixed;
+		  text-align: center;
+		  /*font-family: $font;*/
+		  width: 100%;
+		  bottom: 0;
+
+}
+
+p>a
+{
+	padding-left: 10px !important;
+}
+.fa{
+	    font-size: x-large !important;
+	    color: #3535ff;
+
+}
+img{
+	width: 500px;
+}
+@media (max-width: 576px) {
+	nav .container{
+		width: 100%;
+	}
+
+}

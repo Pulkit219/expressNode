@@ -1,16 +1,15 @@
 <% include partials/header %>
 
-
-<div class="container">
+<h1>Index page</h1>
       <%blogs.forEach(obj=>{%>
-        <div class="fluid">
+        <div>
           <h2><%=obj.title %></h2>
           <img src="<%=obj.image %>" alt="">
           <span><%=obj.created %></span>
           <p><%=obj.body %></p>
         </div>
       <%}) %>
-</div>
 
 
-<% include partials/footer %>
+
+<!-- <% include partials/footer %> -->

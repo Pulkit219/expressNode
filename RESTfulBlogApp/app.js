@@ -22,7 +22,7 @@ var Blog = mongoose.model('Blog', blogschema)
 // Blog.create({
 //   title:'testing',
 //   image:'https://static.pexels.com/photos/573239/pexels-photo-573239.jpeg',
-//   body:'This is my first blog '
+//   body:'This is my first blog '..
 // });
 
 app.get('/',(req,resp)=>{

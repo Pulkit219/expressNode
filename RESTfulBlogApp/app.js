@@ -29,15 +29,12 @@ app.get('/',(req,resp)=>{
   resp.redirect('/blogs');
 })
 
-
+//INDEX ROUTE
 app.get('/blogs', function(req, resp){
-
-  //  resp.render('campgrounds',{campgrounds:campgrounds });
   Blog.find({},
   function(err,allblogs){
     if(err)
     console.log(err);
-
     else {
     resp.render('index',{blogs:allblogs });
 
@@ -45,6 +42,12 @@ app.get('/blogs', function(req, resp){
   }
   );
 });
+
+//NEW ROUTES
+app.get('/blogs/new', function(req, resp){
+  resp.render('new');
+});
+
 
 app.listen(4200, function()
 {

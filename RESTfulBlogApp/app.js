@@ -43,10 +43,27 @@ app.get('/blogs', function(req, resp){
   );
 });
 
-//NEW ROUTES
+//NEW ROUTE
 app.get('/blogs/new', function(req, resp){
   resp.render('new');
 });
+
+//POST ROUTE
+app.post('/blogs', function(req,resp){
+ //create blog
+  Blog.create(req.body.blog, (err,newBlog)=>{
+    if(err)
+    {
+      console.log(err);
+      resp.render('new');
+    }
+    else {
+    resp.redirect('/blogs');
+    }
+    
+  })
+});
+
 
 
 app.listen(4200, function()

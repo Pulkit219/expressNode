@@ -15,10 +15,8 @@
       <label>Body Content</label>
       <textarea name="blog[body]"><%= blog.body%></textarea>
     </div>
-
-
-
     <input type="submit" class="ui inverted blue big button" >
   </form>
+  <a href="/blogs/<%= blog._id %>"><button type="button" class="ui blue basic button" >Cancel</button></a>
 </div>
 <% include ./partials/footer %>

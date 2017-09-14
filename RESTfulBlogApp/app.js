@@ -97,18 +97,16 @@ app.get('/blogs/:id/edit',(req,resp)=>
   })
 })
 
-//UPDATE ROUTE
+//UPDATE/PUT ROUTE
 app.put('/blogs/:id', function(req,resp){
-  Blog.create(req.body.blog, (err,newBlog)=>{
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err,editedBlog) {
     if(err)
     {
-      console.log(err);
-      resp.render('new');
+      resp.redirect('/blogs');
     }
     else {
-    resp.redirect('/blogs');
+      resp.redirect('/blogs/'+req.params.id );
     }
-
   })
 });
 

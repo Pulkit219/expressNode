@@ -3,6 +3,14 @@
 {
   margin-top: 7.0em;
 }
+div.ui.main.text.container.segment
+{
+  margin-bottom: 3%;
+  padding-bottom: 3%;
+}
+form{
+  display: inline;
+}
 i.icon
 {
   font-size:  2em;

@@ -32,9 +32,9 @@ p>a
 	    color: #3535ff;
 
 }
-img{
+/*img{
 	width: 500px;
-}
+}*/
 @media (max-width: 576px) {
 	nav .container{
 		width: 100%;

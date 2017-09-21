@@ -2,17 +2,12 @@ var express =require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Campground = require('./models/campground');
+
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useMongoClient: true});
 
-//SCHEMA
-var campgroundschema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description:String
-});
 
-var Campground = mongoose.model('Campground',campgroundschema );
 // Campground.create(
 //    {name: "Granite Hill", image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",description:'awesome place to visit'},
 // function(err,campground){

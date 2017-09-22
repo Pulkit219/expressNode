@@ -5,11 +5,10 @@ var mongoose = require("mongoose");
 var Campground = require('./models/campground');
 var seedDB    = require('./seeds');
 
-seedDB();
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useMongoClient: true});
-
+seedDB();
 
 // Campground.create(
 //    {name: "Granite Hill", image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",description:'awesome place to visit'},
@@ -69,13 +68,16 @@ app.get('/campgrounds/new', function(req, resp){
   resp.render('new');
 });
 
+//SHOW
 app.get('/campgrounds/:id', function(req, resp){
-  Campground.findById(req.params.id, function(err,specificCampGround){
+  Campground.findById(req.params.id).populate('comments').exec(function(err,specificCampGround){
     if(err)
-     console.log(err);
-
+    {
+       console.log(err);
+    }
      else {
          resp.render('show', {campground:specificCampGround});
+
         }
   });
 

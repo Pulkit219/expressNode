@@ -49,14 +49,13 @@ app.get('/', function(req, resp)
 
 app.get('/campgrounds', function(req, resp){
 
-  //  resp.render('campgrounds',{campgrounds:campgrounds });
   Campground.find({},
   function(err,allcampground){
     if(err)
     console.log(err);
 
     else {
-    resp.render('index',{campgrounds:allcampground });
+    resp.render('campgrounds/index',{campgrounds:allcampground });
 
     }
   }
@@ -65,7 +64,7 @@ app.get('/campgrounds', function(req, resp){
 
 
 app.get('/campgrounds/new', function(req, resp){
-  resp.render('new');
+  resp.render('campgrounds/new');
 });
 
 //SHOW
@@ -76,7 +75,7 @@ app.get('/campgrounds/:id', function(req, resp){
        console.log(err);
     }
      else {
-         resp.render('show', {campground:specificCampGround});
+         resp.render('campgrounds/show', {campground:specificCampGround});
 
         }
   });
@@ -106,11 +105,13 @@ app.post('/campgrounds', function(req,resp){
      }
    }
    );
-  //  campgrounds.push(obj);
-
-
 })
-
+//====================================
+//COMMENT ROUTES
+app.get('/campgrounds/:id/comments/new',function(req,resp){
+  resp.render('comments/new');
+})
+//=====================================
 
 
 app.listen(4200, function()

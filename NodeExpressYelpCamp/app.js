@@ -109,8 +109,17 @@ app.post('/campgrounds', function(req,resp){
 //====================================
 //COMMENT ROUTES
 app.get('/campgrounds/:id/comments/new',function(req,resp){
-  resp.render('comments/new');
-})
+  Campground.findById(req.params.id,function(err,campgroundFound){
+    if(err)
+    {
+      console.log(err);
+    }
+      else{
+        resp.render('comments/new',{campground:campgroundFound});
+      }
+    });
+  })
+
 //=====================================
 
 

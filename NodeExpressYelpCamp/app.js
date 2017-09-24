@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var Campground = require('./models/campground');
+var Comment = require('./models/comment');
 var seedDB    = require('./seeds');
 
 
@@ -119,7 +120,30 @@ app.get('/campgrounds/:id/comments/new',function(req,resp){
       }
     });
   })
+app.post('/campgrounds/:id/comments',function(req,resp){
+  Campground.findById(req.params.id,function(err,campgroundFound){
+    if(err)
+    {
+      console.log(err);
+      resp.redirect('/campgrounds');
+    }
+      else{
+        // console.log(req.body.comment);
+        Comment.create(req.body.comment,function(err,comment){
+          if(err)
+          {
+            console.log(err);
+          }
+          else{
+            campgroundFound.comments.push(comment);
+            campgroundFound.save();
+            resp.redirect('/campgrounds/'+campgroundFound._id);
 
+          }
+        });
+      }
+    });
+});
 //=====================================
 
 

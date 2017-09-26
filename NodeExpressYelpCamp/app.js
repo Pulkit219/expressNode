@@ -10,6 +10,10 @@ var seedDB    = require('./seeds');
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useMongoClient: true});
 seedDB();
+app.set('view engine' , 'ejs');
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended:true}));
+
 
 // Campground.create(
 //    {name: "Granite Hill", image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",description:'awesome place to visit'},
@@ -35,9 +39,6 @@ seedDB();
 //  ];
 
 
-app.set('view engine' , 'ejs');
-
-app.use(bodyParser.urlencoded({extended:true}));
 
 
 //ROUTES

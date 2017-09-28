@@ -1,0 +1,18 @@
+{
+  "name": "auth_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pulkit",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.5",
+    "mongoose": "^4.11.13",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.2.1"
+  }
+}

@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 //ROUTES
+//====================================================
 
 app.get('/', function(req, resp)
 {
@@ -38,6 +39,19 @@ app.get('/secret', function(req, resp)
 {
   resp.render("secret");
 });
+
+//Auth ROUTES
+app.get('/register', function(req,resp){
+  resp.render('register');
+})
+
+app.post('/register',function(req,resp){
+  resp.send("post route");
+  
+})
+
+
+//====================================================
 
 
 app.listen(4200, function()

@@ -68,6 +68,14 @@ app.get('/login', function(req,resp){
   resp.render('login');
 })
 
+
+app.post('/login',passport.authenticate('local', {
+  successRedirect:'/secret',
+  failureRedirect:'/login'
+}) ,function(req,resp){
+
+
+});
 //====================================================
 
 

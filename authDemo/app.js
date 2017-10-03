@@ -63,6 +63,10 @@ app.post('/register',function(req,resp){
 
 })
 
+//LOGIN FORM
+app.get('/login', function(req,resp){
+  resp.render('login');
+})
 
 //====================================================
 

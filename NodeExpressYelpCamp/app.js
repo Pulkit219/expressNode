@@ -2,7 +2,10 @@ var express =require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 var Campground = require('./models/campground');
+var User = require('./models/user');
 var Comment = require('./models/comment');
 var seedDB    = require('./seeds');
 

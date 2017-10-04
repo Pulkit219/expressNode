@@ -36,7 +36,7 @@ app.get('/', function(req, resp)
   resp.render("home");
 });
 
-app.get('/secret', function(req, resp)
+app.get('/secret', isLogged,function(req, resp)
 {
   resp.render("secret");
 });
@@ -82,6 +82,15 @@ app.get('/logout', function(req, resp){
   req.logout();
   resp.redirect('/');
 })
+
+function isLogged(req,resp,next)
+{
+  if(req.isAuthenticated())
+  {
+    return next();
+  }
+  resp.redirect('/login');
+}
 //====================================================
 
 

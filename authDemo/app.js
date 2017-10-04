@@ -19,6 +19,7 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -76,6 +77,11 @@ app.post('/login',passport.authenticate('local', {
 
 
 });
+
+app.get('/logout', function(req, resp){
+  req.logout();
+  resp.redirect('/');
+})
 //====================================================
 
 

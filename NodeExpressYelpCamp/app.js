@@ -194,8 +194,11 @@ app.get('/login',function(req,resp){
   resp.render('login');
 })
 
-app.post('/login',function(req,resp){
-  resp.send('login success')
+app.post('/login', passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login'
+                                   }),
+                                   function(req,resp){
+
 })
 
 //=====================================================

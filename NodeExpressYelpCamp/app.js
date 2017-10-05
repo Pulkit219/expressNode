@@ -167,6 +167,39 @@ app.post('/campgrounds/:id/comments',function(req,resp){
 //=====================================
 
 
+//AUTH ROUTES
+//=====================================================
+//show registration form
+app.get('/register',function(req,resp){
+  resp.render('register');
+})
+//handle sign up logic
+app.post('/register',function(req,resp){
+  var newUser = new User({username:req.body.username});
+  User.register(newUser, req.body.password,function(err,user){
+    if(err){
+      console.log(err);
+      return resp.render('register');
+    }
+    else{
+      passport.authenticate('local')( req,resp,function(){
+        resp.redirect('/campgrounds')
+      });
+    }
+  })
+})
+
+//sign in login
+app.get('/login',function(req,resp){
+  resp.render('login');
+})
+
+app.post('/login',function(req,resp){
+  resp.send('login success')
+})
+
+//=====================================================
+
 app.listen(4200, function()
 {
   console.log('server started');

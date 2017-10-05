@@ -129,7 +129,7 @@ app.post('/campgrounds', function(req,resp){
 })
 //====================================
 //COMMENT ROUTES
-app.get('/campgrounds/:id/comments/new',function(req,resp){
+app.get('/campgrounds/:id/comments/new',isLoggedIn,function(req,resp){
   Campground.findById(req.params.id,function(err,campgroundFound){
     if(err)
     {
@@ -140,7 +140,7 @@ app.get('/campgrounds/:id/comments/new',function(req,resp){
       }
     });
   })
-app.post('/campgrounds/:id/comments',function(req,resp){
+app.post('/campgrounds/:id/comments',isLoggedIn,function(req,resp){
   Campground.findById(req.params.id,function(err,campgroundFound){
     if(err)
     {
@@ -195,11 +195,23 @@ app.get('/login',function(req,resp){
 })
 
 app.post('/login', passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login'
+                                   failureRedirect: '/login',
+
                                    }),
                                    function(req,resp){
 
 })
+app.get('/logout',function(req,resp){
+  req.logout();
+  resp.redirect('/login');
+})
+//middleware
+function isLoggedIn(req,resp,next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  resp.redirect('/login')
+}
 
 //=====================================================
 

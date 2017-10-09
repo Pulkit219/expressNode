@@ -28,7 +28,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 //==========================================================
-
+app.use(function(req,resp,next){
+  resp.locals.currentUser = req.user;
+  next();
+})
 app.set('view engine' , 'ejs');
 app.use(express.static(__dirname  + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -76,7 +79,7 @@ app.get('/campgrounds', function(req, resp){
     console.log(err);
 
     else {
-    resp.render('campgrounds/index',{campgrounds:allcampground });
+    resp.render('campgrounds/index',{campgrounds:allcampground});
 
     }
   }

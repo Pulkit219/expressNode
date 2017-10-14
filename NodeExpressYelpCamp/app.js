@@ -8,6 +8,9 @@ var Campground = require('./models/campground');
 var User = require('./models/user');
 var Comment = require('./models/comment');
 var seedDB    = require('./seeds');
+var commentRoutes = require('./routes/comments');
+var campgroundRoutes = require('./routes/campgrounds');
+var indexRoutes = require('./routes/index');
 
 
 mongoose.Promise = global.Promise;
@@ -36,6 +39,10 @@ app.set('view engine' , 'ejs');
 app.use(express.static(__dirname  + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.use(commentRoutes);
+app.use(campgroundRoutes);
+app.use(indexRoutes);
+
 
 // Campground.create(
 //    {name: "Granite Hill", image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",description:'awesome place to visit'},
@@ -63,158 +70,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 
-//ROUTES
-
-app.get('/', function(req, resp)
-{
-  resp.render("landing");
-});
 
 
-app.get('/campgrounds', function(req, resp){
-
-  Campground.find({},
-  function(err,allcampground){
-    if(err)
-    console.log(err);
-
-    else {
-    resp.render('campgrounds/index',{campgrounds:allcampground});
-
-    }
-  }
-  );
-});
-
-
-app.get('/campgrounds/new', function(req, resp){
-  resp.render('campgrounds/new');
-});
-
-//SHOW
-app.get('/campgrounds/:id', function(req, resp){
-  Campground.findById(req.params.id).populate('comments').exec(function(err,specificCampGround){
-    if(err)
-    {
-       console.log(err);
-    }
-     else {
-         resp.render('campgrounds/show', {campground:specificCampGround});
-
-        }
-  });
-
-});
-
-
-
-app.post('/campgrounds', function(req,resp){
-   var name = req.body.name;
-   var url= req.body.url;
-   var desc = req.body.desc;
-   var obj =
-   {
-     name:name,
-     image:url,
-     description:desc
-   };
-   Campground.create(obj,
-   function(err,campground){
-     if(err)
-     console.log(err);
-
-     else {
-       console.log('created!!!');
-       resp.redirect("/campgrounds");
-     }
-   }
-   );
-})
-//====================================
-//COMMENT ROUTES
-app.get('/campgrounds/:id/comments/new',isLoggedIn,function(req,resp){
-  Campground.findById(req.params.id,function(err,campgroundFound){
-    if(err)
-    {
-      console.log(err);
-    }
-      else{
-        resp.render('comments/new',{campground:campgroundFound});
-      }
-    });
-  })
-app.post('/campgrounds/:id/comments',isLoggedIn,function(req,resp){
-  Campground.findById(req.params.id,function(err,campgroundFound){
-    if(err)
-    {
-      console.log(err);
-      resp.redirect('/campgrounds');
-    }
-      else{
-        // console.log(req.body.comment);
-        Comment.create(req.body.comment,function(err,comment){
-          if(err)
-          {
-            console.log(err);
-          }
-          else{
-            campgroundFound.comments.push(comment);
-            campgroundFound.save();
-            resp.redirect('/campgrounds/'+campgroundFound._id);
-
-          }
-        });
-      }
-    });
-});
-//=====================================
-
-
-//AUTH ROUTES
-//=====================================================
-//show registration form
-app.get('/register',function(req,resp){
-  resp.render('register');
-})
-//handle sign up logic
-app.post('/register',function(req,resp){
-  var newUser = new User({username:req.body.username});
-  User.register(newUser, req.body.password,function(err,user){
-    if(err){
-      console.log(err);
-      return resp.render('register');
-    }
-    else{
-      passport.authenticate('local')( req,resp,function(){
-        resp.redirect('/campgrounds')
-      });
-    }
-  })
-})
-
-//sign in login
-app.get('/login',function(req,resp){
-  resp.render('login');
-})
-
-app.post('/login', passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-
-                                   }),
-                                   function(req,resp){
-
-})
-app.get('/logout',function(req,resp){
-  req.logout();
-  resp.redirect('/login');
-})
-//middleware
-function isLoggedIn(req,resp,next){
-  if(req.isAuthenticated()){
-    return next();
-  }
-  resp.redirect('/login')
-}
 
 //=====================================================
 

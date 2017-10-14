@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var Campground= require('../models/campground');
-var comment = require('../models/comment');
+var Comment = require('../models/comment');
 
 //COMMENT ROUTES
 router.get('/campgrounds/:id/comments/new',isLoggedIn,function(req,resp){

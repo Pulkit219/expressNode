@@ -15,7 +15,7 @@ var indexRoutes = require('./routes/index');
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useMongoClient: true});
-seedDB();
+// seedDB();
 
 //PASSPORT CONFIGURATION
 //===========================================

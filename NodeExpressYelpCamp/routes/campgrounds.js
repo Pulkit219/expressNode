@@ -46,11 +46,16 @@ router.post('/campgrounds',isLoggedIn, function(req,resp){
    var name = req.body.name;
    var url= req.body.url;
    var desc = req.body.desc;
+   var author={
+     id:req.user._id,
+     username:req.user.username
+   }
    var obj =
    {
      name:name,
      image:url,
-     description:desc
+     description:desc,
+     author:author
    };
    Campground.create(obj,
    function(err,campground){

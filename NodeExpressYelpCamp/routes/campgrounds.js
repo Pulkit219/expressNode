@@ -21,7 +21,7 @@ router.get('/campgrounds', function(req, resp){
 });
 
 
-router.get('/campgrounds/new', function(req, resp){
+router.get('/campgrounds/new', isLoggedIn,function(req, resp){
   resp.render('campgrounds/new');
 });
 
@@ -42,7 +42,7 @@ router.get('/campgrounds/:id', function(req, resp){
 
 
 
-router.post('/campgrounds', function(req,resp){
+router.post('/campgrounds',isLoggedIn, function(req,resp){
    var name = req.body.name;
    var url= req.body.url;
    var desc = req.body.desc;

@@ -11,6 +11,7 @@ var seedDB    = require('./seeds');
 var commentRoutes = require('./routes/comments');
 var campgroundRoutes = require('./routes/campgrounds');
 var indexRoutes = require('./routes/index');
+var methodOverride = require('method-override');
 
 
 mongoose.Promise = global.Promise;
@@ -26,6 +27,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride("_method"));
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());

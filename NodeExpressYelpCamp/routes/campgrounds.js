@@ -69,6 +69,10 @@ router.post('/campgrounds',isLoggedIn, function(req,resp){
    }
    );
 })
+//EDIT CAMPGROUND
+router.get('/campgrounds/:id/edit',function(req,resp){
+  resp.render('campgrounds/edit');
+})
 
 //middleware
 function isLoggedIn(req,resp,next){

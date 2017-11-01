@@ -81,6 +81,7 @@ router.get('/campgrounds/:id/edit',function(req,resp){
   })
 
 })
+//UPDATE CAMGROUND ROUTE
 router.put('/campgrounds/:id',function(req,resp){
   Campground.findByIdAndUpdate(req.params.id,req.body.campground,function(err,updatedCamground){
     if(err)
@@ -92,6 +93,21 @@ router.put('/campgrounds/:id',function(req,resp){
   }
 });
 })
+
+//DELETE CAMPGROUND
+router.delete('/campgrounds/:id',function(req,resp){
+  Campground.findByIdAndRemove(req.params.id,function(err){
+    if(err)
+    {
+      resp.redirect('/campgrounds/');
+  }
+  else {
+      resp.redirect('/campgrounds/');
+  }
+});
+
+})
+
 
 //middleware
 function isLoggedIn(req,resp,next){

@@ -99,10 +99,10 @@ router.delete('/campgrounds/:id',function(req,resp){
   Campground.findByIdAndRemove(req.params.id,function(err){
     if(err)
     {
-      resp.redirect('/campgrounds/');
+      resp.redirect('/campgrounds');
   }
   else {
-      resp.redirect('/campgrounds/');
+      resp.redirect('/campgrounds');
   }
 });
 

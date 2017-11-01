@@ -71,7 +71,15 @@ router.post('/campgrounds',isLoggedIn, function(req,resp){
 })
 //EDIT CAMPGROUND
 router.get('/campgrounds/:id/edit',function(req,resp){
-  resp.render('campgrounds/edit');
+  Campground.findById(req.params.id,function(err,foundCampground){
+    if(err){
+      console.log(err)
+    }
+    else {
+      resp.render('campgrounds/edit', {campground:foundCampground});
+    }
+  })
+
 })
 
 //middleware

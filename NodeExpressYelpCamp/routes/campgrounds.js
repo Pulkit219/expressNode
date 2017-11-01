@@ -70,7 +70,7 @@ router.post('/campgrounds',isLoggedIn, function(req,resp){
    );
 })
 //EDIT CAMPGROUND
-router.get('/campgrounds/:id/edit',isLoggedIn,function(req,resp){
+router.get('/campgrounds/:id/edit',function(req,resp){
   Campground.findById(req.params.id,function(err,foundCampground){
     if(err){
       console.log(err)
@@ -81,7 +81,7 @@ router.get('/campgrounds/:id/edit',isLoggedIn,function(req,resp){
   })
 
 })
-router.put('/campgrounds/:id',isLoggedIn,function(req,resp){
+router.put('/campgrounds/:id',function(req,resp){
   Campground.findByIdAndUpdate(req.params.id,req.body.campground,function(err,updatedCamground){
     if(err)
     {

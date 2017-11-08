@@ -71,14 +71,20 @@ router.post('/campgrounds',isLoggedIn, function(req,resp){
 })
 //EDIT CAMPGROUND
 router.get('/campgrounds/:id/edit',function(req,resp){
-  Campground.findById(req.params.id,function(err,foundCampground){
-    if(err){
-      console.log(err)
-    }
-    else {
-      resp.render('campgrounds/edit', {campground:foundCampground});
-    }
-  })
+  if(req.isAuthenticated()){
+    Campground.findById(req.params.id,function(err,foundCampground){
+      if(err){
+        console.log(err)
+      }
+      else {
+        resp.render('campgrounds/edit', {campground:foundCampground});
+      }
+    })
+  }
+  else{
+    resp.send("Please Login");
+  }
+
 
 })
 //UPDATE CAMGROUND ROUTE
@@ -115,6 +121,32 @@ function isLoggedIn(req,resp,next){
     return next();
   }
   resp.redirect('/login')
+}
+//=============================================
+function checkCampgroundOwnership(req,resp,next)
+{
+  if(req.isAuthenticated()){
+    Campground.findById(req.params.id,function(err,foundCampground){
+      if(err){
+        console.log(err);
+        resp.redirect("back");
+      }
+      else {
+        if(foundCampground.author.id.equals(req.user._id))
+        {
+          next();
+        }
+        else{
+          resp.redirect("back");
+        }
+
+      }
+    });
+  }
+  else{
+    resp.redirect("back");
+  }
+
 }
 
 module.exports = router;

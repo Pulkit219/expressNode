@@ -59,7 +59,7 @@ router.get('/campgrounds/:id/comments/:comment_id/edit',function(req,resp){
       })
 
 })
-
+//UPDATE ROUTE
 router.put('/campgrounds/:id/comments/:comment_id',function(req,resp){
   Comment.findByIdAndUpdate(req.params.comment_id,req.body.comment,function(err,updatedCamground){
     if(err)
@@ -71,7 +71,17 @@ router.put('/campgrounds/:id/comments/:comment_id',function(req,resp){
     }
   })
 })
-
+//DELETE ROUTE
+router.delete('/campgrounds/:id/comments/:comment_id',function(req,resp){
+Comment.findByIdAndRemove(req.params.comment_id,function(err){
+  if(err){
+    resp.redirect('back');
+  }
+  else{
+    resp.redirect('/campgrounds/'+req.params.id);
+  }
+})
+})
 //middleware
 function isLoggedIn(req,resp,next){
   if(req.isAuthenticated()){

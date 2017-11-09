@@ -70,46 +70,29 @@ router.post('/campgrounds',isLoggedIn, function(req,resp){
    );
 })
 //EDIT CAMPGROUND
-router.get('/campgrounds/:id/edit',function(req,resp){
-  if(req.isAuthenticated()){
+router.get('/campgrounds/:id/edit',checkCampgroundOwnership,function(req,resp){
+
     Campground.findById(req.params.id,function(err,foundCampground){
-      if(err){
-        console.log(err)
-      }
-      else {
-        resp.render('campgrounds/edit', {campground:foundCampground});
-      }
+
+      resp.render('campgrounds/edit', {campground:foundCampground});
+
     })
-  }
-  else{
-    resp.send("Please Login");
-  }
-
-
 })
 //UPDATE CAMGROUND ROUTE
-router.put('/campgrounds/:id',function(req,resp){
+router.put('/campgrounds/:id',checkCampgroundOwnership,function(req,resp){
   Campground.findByIdAndUpdate(req.params.id,req.body.campground,function(err,updatedCamground){
-    if(err)
-    {
-      resp.redirect('/campgrounds/');
-  }
-  else {
+
       resp.redirect('/campgrounds/'+req.params.id);
-  }
+
 });
 })
 
 //DELETE CAMPGROUND
-router.delete('/campgrounds/:id',function(req,resp){
+router.delete('/campgrounds/:id',checkCampgroundOwnership,function(req,resp){
   Campground.findByIdAndRemove(req.params.id,function(err){
-    if(err)
-    {
+
       resp.redirect('/campgrounds');
-  }
-  else {
-      resp.redirect('/campgrounds');
-  }
+
 });
 
 })

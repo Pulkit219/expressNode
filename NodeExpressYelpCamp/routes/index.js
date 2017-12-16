@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
+var middleware =require('../middleware');
 
 router.get('/', function(req, resp)
 {
@@ -51,11 +52,12 @@ router.get('/logout',function(req,resp){
   resp.redirect('/login');
 })
 //middleware
+/*
 function isLoggedIn(req,resp,next){
   if(req.isAuthenticated()){
     return next();
   }
   resp.redirect('/login')
-}
+}*/
 
 module.exports = router;

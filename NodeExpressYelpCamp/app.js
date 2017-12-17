@@ -12,6 +12,7 @@ var commentRoutes = require('./routes/comments');
 var campgroundRoutes = require('./routes/campgrounds');
 var indexRoutes = require('./routes/index');
 var methodOverride = require('method-override');
+var flash = require("connect-flash");
 
 
 mongoose.Promise = global.Promise;
@@ -28,6 +29,7 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride("_method"));
+app.use(flash());
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -35,6 +37,8 @@ passport.deserializeUser(User.deserializeUser());
 //==========================================================
 app.use(function(req,resp,next){
   resp.locals.currentUser = req.user;
+  resp.locals.error=req.flash("error");
+  resp.locals.success=req.flash("success");
   next();
 })
 app.set('view engine' , 'ejs');

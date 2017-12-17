@@ -98,7 +98,7 @@ router.delete('/campgrounds/:id',middleware.checkCampgroundOwnership,function(re
 
 })
 
-
+module.exports = router;
 //middleware
 
 /*
@@ -134,5 +134,3 @@ function checkCampgroundOwnership(req,resp,next)
   }
 
 }*/
-
-module.exports = router;

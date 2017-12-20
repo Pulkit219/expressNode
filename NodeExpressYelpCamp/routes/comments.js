@@ -9,9 +9,10 @@ var middleware =require('../middleware');
 router.get('/campgrounds/:id/comments/new',middleware.isLoggedIn,function(req,resp){
   // console.log(req.params.id);
   Campground.findById(req.params.id,function(err,campgroundFound){
-    if(err)
+    if(err || !campgroundFound)
     {
-      console.log(err);
+      req.flash("error", "Campground not found");
+      return resp.redirect('back');
     }
       else{
         resp.render('comments/new',{campground:campgroundFound});
@@ -51,14 +52,22 @@ router.post('/campgrounds/:id/comments',middleware.isLoggedIn,function(req,resp)
 
 //EDIT ROUTE
 router.get('/campgrounds/:id/comments/:comment_id/edit',middleware.checkCommentOwnership,function(req,resp){
-      Comment.findById(req.params.comment_id, function(err,foundComment){
-        if(err){
-          resp.redirect('back');
+      Campground.findById(req.params.id, function(err,foundCampground){
+        if(err || !foundCampground)
+        {
+          req.flash("error", "Campground not found");
+          return resp.redirect('back');
         }
-        else{
-          resp.render("comments/edit",{campground_id:req.params.id, comment:foundComment});
-        }
-      })
+        Comment.findById(req.params.comment_id, function(err,foundComment){
+          if(err){
+            resp.redirect('back');
+          }
+          else{
+            resp.render("comments/edit",{campground_id:req.params.id, comment:foundComment});
+          }
+        });
+      });
+
 
 })
 //UPDATE ROUTE
@@ -87,12 +96,12 @@ Comment.findByIdAndRemove(req.params.comment_id,function(err){
 })
 })
 //middleware
-function isLoggedIn(req,resp,next){
-  if(req.isAuthenticated()){
-    return next();
-  }
-  resp.redirect('/login')
-}
+// function isLoggedIn(req,resp,next){
+//   if(req.isAuthenticated()){
+//     return next();
+//   }
+//   resp.redirect('/login')
+// }
 module.exports = router;
 //=====================================
 /*function checkCommentOwnership(req,resp,next)

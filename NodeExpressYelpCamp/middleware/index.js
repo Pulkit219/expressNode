@@ -8,11 +8,13 @@ var Comment = require('../models/comment');
 middlewareObj.checkCampgroundOwnership =function(req,resp,next){
   if(req.isAuthenticated()){
     Campground.findById(req.params.id,function(err,foundCampground){
-      if(err){
+      if(err || !foundCampground){
         console.log(err);
-        resp.redirect("back");
+        req.flash("error", "Campground not found");
+        return resp.redirect("/campgrounds");
       }
       else {
+
         if(foundCampground.author.id.equals(req.user._id))
         {
           next();
@@ -35,9 +37,10 @@ middlewareObj.checkCampgroundOwnership =function(req,resp,next){
 middlewareObj.checkCommentOwnership =function(req,resp,next){
   if(req.isAuthenticated()){
     Comment.findById(req.params.comment_id,function(err,foundComment){
-      if(err){
-        req.flash("error", "Campground not found");;
-        resp.redirect("back");
+      if(err || !foundComment){
+        console.log(err);
+        req.flash("error", "Comment not found");
+        return resp.redirect("back");
       }
       else {
         if(foundComment.author.id.equals(req.user._id))

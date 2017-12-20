@@ -27,11 +27,27 @@ router.get('/campgrounds/new', middleware.isLoggedIn,function(req, resp){
 });
 
 //SHOW
+// router.get("/:id", function(req, res){
+//     //find the campground with provided ID
+//     Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
+//         if(err || !foundCampground){
+//             console.log(err);
+//             req.flash('error', 'Sorry, that campground does not exist!');
+//             return res.redirect('/campgrounds');
+//         }
+//         console.log(foundCampground)
+//         //render show template with that campground
+//         res.render("campgrounds/show", {campground: foundCampground});
+//     });
+// });
+
 router.get('/campgrounds/:id', function(req, resp){
   Campground.findById(req.params.id).populate('comments').exec(function(err,specificCampGround){
-    if(err)
+    if(err || !specificCampGround)
     {
        console.log(err);
+       req.flash("error","Campground not found");
+        resp.redirect("back");
     }
      else {
          resp.render('campgrounds/show', {campground:specificCampGround});

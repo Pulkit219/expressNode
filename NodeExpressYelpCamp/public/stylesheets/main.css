@@ -37,6 +37,16 @@ padding-left: 10px !important;
 .delete_form{
   display: inline;
 }
+
+.flash {
+    position: fixed;
+    top: 60px;
+    left: 1%;
+    right: 1%;
+    z-index: 2;
+    border: 1px solid grey;
+    opacity: 0.8;
+}
 /*img{
 width: 500px;
 }*/

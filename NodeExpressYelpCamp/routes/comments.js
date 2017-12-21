@@ -104,29 +104,3 @@ Comment.findByIdAndRemove(req.params.comment_id,function(err){
 // }
 module.exports = router;
 //=====================================
-/*function checkCommentOwnership(req,resp,next)
-{
-  if(req.isAuthenticated()){
-    Comment.findById(req.params.comment_id,function(err,foundComment){
-      if(err){
-        console.log(err);
-        resp.redirect("back");
-      }
-      else {
-        if(foundComment.author.id.equals(req.user._id))
-        {
-          next();
-        }
-        else{
-          resp.redirect("back");
-        }
-
-      }
-    });
-  }
-  else{
-    resp.redirect("back");
-  }
-
-}
-*/

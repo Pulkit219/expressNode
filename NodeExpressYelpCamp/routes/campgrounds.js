@@ -61,6 +61,7 @@ router.get('/campgrounds/:id', function(req, resp){
 
 router.post('/campgrounds',middleware.isLoggedIn, function(req,resp){
    var name = req.body.name;
+   var price=req.body.price;
    var url= req.body.url;
    var desc = req.body.desc;
    var author={
@@ -70,6 +71,7 @@ router.post('/campgrounds',middleware.isLoggedIn, function(req,resp){
    var obj =
    {
      name:name,
+     price:price,
      image:url,
      description:desc,
      author:author
